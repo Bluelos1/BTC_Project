@@ -54,10 +54,10 @@ def visualize_transaction_tree(tree):
         if 'confirmations' in transaction_details:
             label += f"\nConfirmations: {transaction_details['confirmations']}"
 
-        dot.node(tree['txid'], label, shape='ellipse', style='filled', color='lightblue')
+        dot.node(tree['txid'], label, shape='rect', style='filled', color='darkgoldenrod2')
 
         if parent:
-            dot.edge(tree['txid'], parent, color='red') 
+            dot.edge(tree['txid'], parent, color='black') 
 
         for input_tree in tree['inputs']:
             add_nodes_and_edges(input_tree, tree['txid'])
