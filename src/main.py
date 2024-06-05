@@ -24,10 +24,10 @@ def build_transaction_tree(txid, depth=0):
         return {"txid": txid, "inputs": [], "coinbase": True, "details": transaction}
 
     tree = {"txid": txid, "inputs": [], "details": transaction}
-    if depth < MAX_DEPTH:
+    if depth < max_depth:
         for vin in transaction.get('vin', []):
-            child_txid = vin.get('txid')
-            if child_txid:
+            if 'txid' in vin:
+                child_txid = vin['txid']
                 child_tree = build_transaction_tree(child_txid, depth + 1)
                 if child_tree:
                     tree['inputs'].append(child_tree)
