@@ -30,7 +30,7 @@ def build_transaction_tree(txid, depth=0, incoming_value=0):
             vout_index = vin.get('vout')
             if child_txid:
                 parent_transaction = fetch_transaction(child_txid)
-                if 'vout' in parent_transaction and any([x>vout_index for x in parent_transaction['vout']]) > vout_index:
+                if 'vout' in parent_transaction:
                     child_value = float(parent_transaction['vout'][vout_index]['value'])
                     child_tree = build_transaction_tree(child_txid, depth + 1, child_value)
                     if child_tree:
