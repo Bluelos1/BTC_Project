@@ -1,4 +1,4 @@
-Sfrom bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
+from bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
 from config import RPC_USER, RPC_PASSWORD, RPC_HOST, RPC_PORT
 from graphviz import Digraph
 
