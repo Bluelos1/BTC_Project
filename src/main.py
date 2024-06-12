@@ -1,4 +1,4 @@
-from bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
+Sfrom bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
 from config import RPC_USER, RPC_PASSWORD, RPC_HOST, RPC_PORT
 from graphviz import Digraph
 
@@ -30,7 +30,7 @@ def build_transaction_tree(txid, depth=0, incoming_value=0):
             vout_index = vin.get('vout')
             if child_txid:
                 parent_transaction = fetch_transaction(child_txid)
-                if 'vout' in parent_transaction and len(parent_transaction['vout']) > vout_index:
+                if 'vout' in parent_transaction and any([x>vout_index for x in parent_transaction['vout']]) > vout_index:
                     child_value = float(parent_transaction['vout'][vout_index]['value'])
                     child_tree = build_transaction_tree(child_txid, depth + 1, child_value)
                     if child_tree:
